@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://interface/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://interface/InitialMenu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://interface/HostMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://interface/ClientMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://interface/HostMenu.gd" type="Script" id=6]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends VBoxContainer
+
+signal changed_menu
+
+var AVAILABLE_MENUES = load('res://interface/available_menus.gd').AVAILABLE_MENUES
+#var path = \"res://interface/ClientMenu.gd\"
+var seted_ip
+
+func _ready():
+	#ResourceLoader.load(path)
+	hide()
+
+func _on_IPAddress_text_changed(new_text):
+	seted_ip = new_text
+
+func _on_Back_pressed():
+	emit_signal('changed_menu', AVAILABLE_MENUES.Initial)
+
+func _on_Join_pressed():
+	var net = NetworkedMultiplayerENet.new()
+	net.create_client(seted_ip,4242)
+	get_tree().network_peer = net
+
+"
+
+[node name="MainMenu" type="Control"]
+margin_left = 12.4816
+margin_top = 7.67874
+margin_right = 1293.48
+margin_bottom = 606.678
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InitialMenu" parent="." instance=ExtResource( 2 )]
+margin_left = -10.0
+margin_top = 54.0
+margin_right = 1271.0
+margin_bottom = 676.0
+
+[node name="HostMenu" parent="." instance=ExtResource( 3 )]
+visible = false
+script = ExtResource( 6 )
+
+[node name="ClientMenu" parent="." instance=ExtResource( 4 )]
+visible = false
+script = SubResource( 1 )
+[connection signal="changed_menu" from="InitialMenu" to="." method="_change_menu_to"]
+[connection signal="changed_menu" from="HostMenu" to="." method="_change_menu_to"]
+[connection signal="changed_menu" from="ClientMenu" to="." method="_change_menu_to"]

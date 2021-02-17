@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://fonts/changa-regular.tres" type="DynamicFont" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends VBoxContainer
+
+signal changed_menu
+
+var AVAILABLE_MENUES = load('res://interface/available_menus.gd').AVAILABLE_MENUES
+#var path = \"res://interface/HostlMenu.gd\"
+
+func _ready():
+	#ResourceLoader.load(path)
+	hide()
+
+
+func _on_Back_pressed():
+	emit_signal('changed_menu', AVAILABLE_MENUES.Initial)
+
+func _on_Host_pressed():
+	var net = NetworkedMultiplayerENet.new()
+	net.create_server(4242,2)
+	get_tree().network_peer = net
+"
+
+[node name="HostMenu" type="VBoxContainer"]
+margin_right = 1278.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="."]
+margin_left = 574.0
+margin_top = 108.0
+margin_right = 704.0
+margin_bottom = 189.0
+rect_min_size = Vector2( 60, 20 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 2 )
+text = "< BACK"
+
+[node name="Host" type="Button" parent="."]
+margin_left = 528.0
+margin_top = 410.0
+margin_right = 750.0
+margin_bottom = 491.0
+rect_min_size = Vector2( 60, 20 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 2 )
+text = "START GAME"
+[connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="Host" to="." method="_on_Host_pressed"]
