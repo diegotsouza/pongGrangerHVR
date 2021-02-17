@@ -1,0 +1,41 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[  ]
+_global_script_class_icons={
+
+}
+
+[application]
+
+config/name="pongGrangerHVR"
+config/description="This game will be use in neuroscience research at IME -USP."
+run/main_scene="res://interface/MainMenu.tscn"
+config/icon="res://assets/icon.png"
+
+[autoload]
+
+Autoload="*res://autoload.gd"
+
+[display]
+
+window/size/width=1280
+window/size/height=720
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray(  )
+
+[rendering]
+
+environment/default_clear_color=Color( 0.282353, 0.258824, 0.258824, 1 )
+environment/default_environment="res://default_env.tres"
