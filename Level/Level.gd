@@ -164,9 +164,9 @@ func set_state (time):
 			$Opponent.state = false
 			$Ball.state = false
 		else:
-			$Player.state = false
-			$Opponent.state = false
-			$Ball.state = false
+			$Player.state = true
+			$Opponent.state = true
+			$Ball.state = true
 
 # Called when the HTTP request is completed.
 func _http_request_completed(result, response_code, headers, body):
