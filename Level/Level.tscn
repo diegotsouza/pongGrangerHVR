@@ -137,11 +137,12 @@ margin_left = 306.579
 margin_top = 58.0013
 margin_right = 923.579
 margin_bottom = 72.0013
-max_value = 120.0
-value = 120.0
+max_value = 1260.0
+value = 100.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="body_entered" from="Left" to="." method="_on_Left_body_entered"]
 [connection signal="body_entered" from="Right" to="." method="_on_Right_body_entered"]
 [connection signal="timeout" from="CountdownTimer" to="." method="_on_CountdownTimer_timeout"]

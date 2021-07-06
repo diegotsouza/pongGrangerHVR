@@ -4,7 +4,7 @@ enum AVAILABLE_MENUES{
 	Initial,
 	Host,
 	Client,
-	Local
+	Form
 }
 
 func _ready():

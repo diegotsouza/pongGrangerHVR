@@ -5,21 +5,20 @@ var ball
 var is_master = false
 var state = true
 
-func _ready():
+export var area_min = 0
+export var area_max = 0
 
-#	if Autoload.net_id != 1:
-#		state = true
+func _ready():
 	ball = get_parent().find_node("Ball")
 
-#func _physics_process(delta):
-#	pass
-	#move_and_slide(Vector2(0,get_opponent_direction()) * speed)
 
 func get_opponent_direction():
-	if abs(ball.position.y - position.y) > 25:
+	if abs(ball.position.y - position.y) > 20 \
+	and (ball.velocity.x > 0 or (ball.position.x > 640 and ball.velocity.x < 0)):
 		if ball.position.y > position.y: return 1
-		else: return -1
+		else:return -1
 	else: return 0
+
 	
 func _physics_process(delta):
 	if state and Autoload.net_id != 1:
@@ -37,7 +36,7 @@ func _physics_process(delta):
 		if Input.is_action_pressed("ui_down"):
 			velocity.y += 1
 		move_and_slide(velocity * speed)
-	if not state and Autoload.net_id == 1:
+	elif not state and Autoload.net_id == 1:
 		move_and_slide(Vector2(0,get_opponent_direction()) * speed)
 
 	
@@ -45,8 +44,4 @@ func initialize(id):
 	is_master = id == Autoload.player_ids[1]
 
 remote func set_pos(pos):
-	position = pos  
-
-
-
-
+	position = pos

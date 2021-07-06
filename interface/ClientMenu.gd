@@ -10,9 +10,6 @@ func _ready():
 	#ResourceLoader.load(path)
 	hide()
 
-func _on_IPAddress_text_changed(new_text):
-	seted_ip = new_text
-
 func _on_Back_pressed():
 	emit_signal('changed_menu', AVAILABLE_MENUES.Initial)
 
@@ -21,3 +18,6 @@ func _on_Join_pressed():
 	net.create_client(seted_ip,4242)
 	get_tree().network_peer = net
 
+
+func _on_PlayerName_text_changed(new_text):
+	seted_ip = new_text

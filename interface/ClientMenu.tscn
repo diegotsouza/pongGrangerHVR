@@ -4,8 +4,9 @@
 [ext_resource path="res://fonts/changa-regular.tres" type="DynamicFont" id=2]
 
 [node name="ClientMenu" type="VBoxContainer"]
+margin_top = 2.6178
 margin_right = 1278.0
-margin_bottom = 600.0
+margin_bottom = 602.618
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
@@ -47,6 +48,7 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 custom_fonts/font = ExtResource( 2 )
 text = "START GAME"
+
 [connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]
 [connection signal="text_changed" from="IPAddress" to="." method="_on_IPAddress_text_changed"]
 [connection signal="pressed" from="Join" to="." method="_on_Join_pressed"]

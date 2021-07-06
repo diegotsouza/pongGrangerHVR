@@ -2,12 +2,14 @@ extends Control
 
 var AVAILABLE_MENUES = load('res://interface/available_menus.gd').AVAILABLE_MENUES
 var current_menu
-
+var out
 
 func _ready():
 	current_menu = AVAILABLE_MENUES.Initial
 	get_tree().connect("network_peer_connected", self, "Success")
 	_change_menu_to(current_menu)
+
+
 
 func _show_initial_menu():
 	_change_menu_to(AVAILABLE_MENUES.Initial)
@@ -26,6 +28,10 @@ func _change_menu_to(menu):
 			_hide_all_menues()
 			current_menu = menu
 			$ClientMenu.show()
+		AVAILABLE_MENUES.Form:
+			_hide_all_menues()
+			current_menu  = menu
+			$FormMenu.show()
 		_:
 			printerr("Can't switch to menu ", menu, " because it is not valid!")
 
