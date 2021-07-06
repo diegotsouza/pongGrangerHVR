@@ -43,15 +43,10 @@ func initialize(id):
 remote func set_pos(pos):
 	position = pos
 
-#func get_opponent_direction():
-#	if abs(ball.position.y - position.y) > 25:
-#		if ball.position.y > position.y: return 1
-#		else: return -1
-#	else: return 0  
 	
 func get_opponent_direction():
 	if abs(ball.position.y - position.y) > 20 \
-	and (ball.velocity.x > 0 or (ball.position.x > 640 and ball.velocity.x < 0)):
+	and (ball.velocity.x < 0 or abs(ball.position.x - position.x) < 640):
 		if ball.position.y > position.y: return 1
 		else:return -1
 	else: return 0

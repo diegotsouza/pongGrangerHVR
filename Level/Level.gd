@@ -18,7 +18,7 @@ onready var http_request = HTTPRequest.new()
 #	print(num)
 #	return(num)
 	
-#var testp = myprint(21)
+
 const BAR_SPEED = 5
 var current_bar_value
 
@@ -164,9 +164,9 @@ func set_state (time):
 			$Opponent.state = false
 			$Ball.state = false
 		else:
-			$Player.state = true
-			$Opponent.state = true
-			$Ball.state = true
+			$Player.state = false
+			$Opponent.state = false
+			$Ball.state = false
 
 # Called when the HTTP request is completed.
 func _http_request_completed(result, response_code, headers, body):
