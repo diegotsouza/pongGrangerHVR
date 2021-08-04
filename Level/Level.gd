@@ -176,5 +176,6 @@ func _http_request_completed(result, response_code, headers, body):
 func _on_Timer_timeout():
 	# Perform the HTTP request. The URL below returns some JSON as of writing.
 	var fields = recordData()
-	http_request.request("http://127.0.0.1:5000/flask",PoolStringArray(['Content-Type: application/json']), false, 2, to_json(fields))
+	#change local to wifi network http://127.0.0.1:5000/flask to http://192.168.0.103:5000/flask
+	http_request.request("http://192.168.0.103:5000/flask",PoolStringArray(['Content-Type: application/json']), false, 2, to_json(fields))
 
